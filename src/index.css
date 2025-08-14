@@ -2,7 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@300;400;500;600;700&family=Orbitron:wght@400;500;600;700;800;900&family=Rajdhani:wght@300;400;500;600;700&display=swap');
 
 @layer base {
   * {
@@ -10,87 +10,104 @@
   }
   
   body {
-    @apply bg-white text-gray-900 font-inter antialiased;
+    @apply bg-gray-50 dark:bg-gray-900 text-gray-900 dark:text-gray-100 font-inter antialiased transition-colors duration-300;
     font-feature-settings: "rlig" 1, "calt" 1;
   }
   
   h1, h2, h3, h4, h5, h6 {
-    @apply font-space-grotesk font-semibold tracking-tight;
+    @apply font-orbitron font-semibold tracking-tight;
   }
 }
 
 @layer components {
+  /* Sporty Card Styles */
+  .beyblade-card {
+    @apply bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl shadow-lg hover:shadow-xl dark:hover:shadow-2xl;
+    @apply transition-all duration-300 transform hover:scale-105 hover:rotate-1;
+    background: linear-gradient(135deg, rgba(59, 130, 246, 0.05) 0%, rgba(147, 51, 234, 0.05) 100%);
+  }
+  
+  .beyblade-card:hover {
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1), 0 0 30px rgba(59, 130, 246, 0.2);
+  }
+  
+  .dark .beyblade-card:hover {
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3), 0 0 30px rgba(59, 130, 246, 0.3);
+  }
+
   .glass-card {
-    @apply bg-white/80 backdrop-blur-xl border border-gray-200/50 rounded-2xl shadow-sm;
+    @apply bg-white/80 dark:bg-gray-800/80 backdrop-blur-xl border border-gray-200/50 dark:border-gray-700/50 rounded-2xl shadow-lg;
   }
   
   .card {
-    @apply bg-white border border-gray-200 rounded-xl shadow-sm hover:shadow-md transition-all duration-200;
+    @apply bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl shadow-sm hover:shadow-lg dark:hover:shadow-2xl transition-all duration-300;
   }
   
   .primary-button {
-    @apply bg-gray-900 hover:bg-gray-800 text-white font-medium px-6 py-3 rounded-lg;
-    @apply transition-all duration-200 transform hover:scale-[1.02];
-    @apply shadow-sm hover:shadow-md;
+    @apply bg-gradient-to-r from-sport-600 to-sport-700 hover:from-sport-700 hover:to-sport-800;
+    @apply text-white font-rajdhani font-bold px-6 py-3 rounded-lg;
+    @apply transition-all duration-300 transform hover:scale-105 hover:shadow-glow;
+    @apply border border-sport-500 hover:border-sport-400;
   }
   
   .secondary-button {
-    @apply bg-white hover:bg-gray-50 border border-gray-200 hover:border-gray-300;
-    @apply text-gray-700 font-medium px-6 py-3 rounded-lg;
-    @apply transition-all duration-200;
+    @apply bg-white dark:bg-gray-800 hover:bg-gray-50 dark:hover:bg-gray-700;
+    @apply border border-gray-200 dark:border-gray-600 hover:border-sport-300 dark:hover:border-sport-500;
+    @apply text-gray-700 dark:text-gray-300 font-rajdhani font-semibold px-6 py-3 rounded-lg;
+    @apply transition-all duration-300 transform hover:scale-105;
   }
   
   .nav-link {
-    @apply text-gray-600 hover:text-gray-900 font-medium;
-    @apply px-4 py-2 rounded-lg transition-all duration-200;
-    @apply hover:bg-gray-100;
+    @apply text-gray-600 dark:text-gray-400 hover:text-sport-600 dark:hover:text-sport-400 font-rajdhani font-medium;
+    @apply px-4 py-3 rounded-lg transition-all duration-300;
+    @apply hover:bg-sport-50 dark:hover:bg-sport-900/20 hover:shadow-md;
   }
   
   .nav-link-active {
-    @apply text-gray-900 bg-gray-100 font-medium;
-    @apply px-4 py-2 rounded-lg;
+    @apply text-white bg-gradient-to-r from-sport-600 to-sport-700 font-rajdhani font-bold;
+    @apply px-4 py-3 rounded-lg shadow-glow transform scale-105;
   }
   
   .stat-card {
-    @apply card p-6 hover:shadow-lg transition-all duration-300;
+    @apply beyblade-card p-6;
   }
   
   .badge {
-    @apply inline-flex items-center px-3 py-1 rounded-full text-xs font-medium;
+    @apply inline-flex items-center px-3 py-1 rounded-full text-xs font-rajdhani font-bold uppercase tracking-wide;
   }
   
   .badge-success {
-    @apply bg-green-50 text-green-700 border border-green-200;
+    @apply bg-green-50 dark:bg-green-900/30 text-green-700 dark:text-green-400 border border-green-200 dark:border-green-700;
   }
   
   .badge-warning {
-    @apply bg-yellow-50 text-yellow-700 border border-yellow-200;
+    @apply bg-energy-50 dark:bg-energy-900/30 text-energy-700 dark:text-energy-400 border border-energy-200 dark:border-energy-700;
   }
   
   .badge-error {
-    @apply bg-red-50 text-red-700 border border-red-200;
+    @apply bg-battle-50 dark:bg-battle-900/30 text-battle-700 dark:text-battle-400 border border-battle-200 dark:border-battle-700;
   }
   
   .badge-info {
-    @apply bg-blue-50 text-blue-700 border border-blue-200;
+    @apply bg-sport-50 dark:bg-sport-900/30 text-sport-700 dark:text-sport-400 border border-sport-200 dark:border-sport-700;
   }
   
   .input-field {
-    @apply bg-white border border-gray-300 rounded-lg px-4 py-3;
-    @apply text-gray-900 placeholder-gray-500;
-    @apply focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500;
-    @apply transition-all duration-200;
+    @apply bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-600 rounded-lg px-4 py-3;
+    @apply text-gray-900 dark:text-gray-100 placeholder-gray-500 dark:placeholder-gray-400;
+    @apply focus:outline-none focus:ring-2 focus:ring-sport-500 focus:border-sport-500;
+    @apply transition-all duration-300 hover:border-sport-300 dark:hover:border-sport-600;
   }
   
   .select-field {
-    @apply bg-white border border-gray-300 rounded-lg px-4 py-3;
-    @apply text-gray-900;
-    @apply focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500;
-    @apply transition-all duration-200;
+    @apply bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-600 rounded-lg px-4 py-3;
+    @apply text-gray-900 dark:text-gray-100;
+    @apply focus:outline-none focus:ring-2 focus:ring-sport-500 focus:border-sport-500;
+    @apply transition-all duration-300 hover:border-sport-300 dark:hover:border-sport-600;
   }
   
   .page-container {
-    @apply min-h-screen bg-gray-50;
+    @apply min-h-screen bg-gray-50 dark:bg-gray-900 transition-colors duration-300;
   }
   
   .page-header {
@@ -98,11 +115,15 @@
   }
   
   .page-title {
-    @apply text-3xl font-bold text-gray-900 mb-2;
+    @apply text-3xl font-orbitron font-bold text-gray-900 dark:text-gray-100 mb-2;
+    background: linear-gradient(135deg, #0ea5e9 0%, #8b5cf6 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
   }
   
   .page-subtitle {
-    @apply text-gray-600 text-lg;
+    @apply text-gray-600 dark:text-gray-400 text-lg font-rajdhani;
   }
   
   .section-card {
@@ -110,7 +131,7 @@
   }
   
   .section-title {
-    @apply text-xl font-semibold text-gray-900 mb-6 flex items-center;
+    @apply text-xl font-orbitron font-semibold text-gray-900 dark:text-gray-100 mb-6 flex items-center;
   }
   
   .section-icon {
@@ -118,11 +139,7 @@
   }
   
   .beyblade-card {
-    @apply card p-6 hover:shadow-lg transition-all duration-300;
-  }
-  
-  .beyblade-card:hover {
-    transform: translateY(-2px);
+    /* Already defined above */
   }
   
   .beyblade-button {
@@ -130,15 +147,15 @@
   }
   
   .tournament-status-upcoming {
-    @apply badge-info;
+    @apply badge bg-sport-50 dark:bg-sport-900/30 text-sport-700 dark:text-sport-400 border border-sport-200 dark:border-sport-700;
   }
   
   .tournament-status-active {
-    @apply badge-success;
+    @apply badge bg-green-50 dark:bg-green-900/30 text-green-700 dark:text-green-400 border border-green-200 dark:border-green-700 animate-pulse-glow;
   }
   
   .tournament-status-completed {
-    @apply badge text-gray-600 bg-gray-100 border-gray-200;
+    @apply badge text-gray-600 dark:text-gray-400 bg-gray-100 dark:bg-gray-800 border-gray-200 dark:border-gray-700;
   }
   
   .sidebar {
@@ -155,18 +172,18 @@
   }
   
   .sidebar-item {
-    @apply flex items-center px-4 py-3 mx-3 rounded-lg;
-    @apply text-gray-600 hover:text-gray-900 hover:bg-gray-100;
-    @apply transition-all duration-200;
+    @apply flex items-center px-4 py-3 mx-3 rounded-lg font-rajdhani font-medium;
+    @apply text-gray-600 dark:text-gray-400 hover:text-sport-600 dark:hover:text-sport-400 hover:bg-sport-50 dark:hover:bg-sport-900/20;
+    @apply transition-all duration-300 hover:shadow-md hover:scale-105;
   }
   
   .sidebar-item-active {
-    @apply flex items-center px-4 py-3 mx-3 rounded-lg;
-    @apply text-gray-900 bg-gray-100;
+    @apply flex items-center px-4 py-3 mx-3 rounded-lg font-rajdhani font-bold;
+    @apply text-white bg-gradient-to-r from-sport-600 to-sport-700 shadow-glow transform scale-105;
   }
   
   .header {
-    @apply bg-white border-b border-gray-200;
+    @apply bg-white dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700 transition-colors duration-300;
   }
   
   .main-content {
@@ -178,7 +195,7 @@
   }
   
   .modal-content {
-    @apply bg-white border border-gray-200 rounded-2xl max-w-4xl w-full mx-4 max-h-[90vh] overflow-y-auto shadow-xl;
+    @apply bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-2xl max-w-4xl w-full mx-4 max-h-[90vh] overflow-y-auto shadow-2xl;
   }
   
   .form-group {
@@ -186,7 +203,7 @@
   }
   
   .form-label {
-    @apply block text-sm font-medium text-gray-700;
+    @apply block text-sm font-rajdhani font-semibold text-gray-700 dark:text-gray-300 uppercase tracking-wide;
   }
   
   .data-table {
@@ -194,11 +211,11 @@
   }
   
   .data-table th {
-    @apply text-left text-sm font-medium text-gray-500 pb-3 border-b border-gray-200;
+    @apply text-left text-sm font-rajdhani font-bold text-gray-500 dark:text-gray-400 pb-3 border-b border-gray-200 dark:border-gray-700 uppercase tracking-wide;
   }
   
   .data-table td {
-    @apply py-4 text-sm border-b border-gray-100;
+    @apply py-4 text-sm border-b border-gray-100 dark:border-gray-800 text-gray-900 dark:text-gray-100;
   }
   
   .progress-bar {
@@ -206,7 +223,7 @@
   }
   
   .progress-fill {
-    @apply h-2 rounded-full bg-gradient-to-r from-blue-500 to-indigo-500 transition-all duration-500;
+    @apply h-2 rounded-full bg-gradient-to-r from-sport-500 to-sport-600 transition-all duration-500 shadow-glow;
   }
   
   .loading-spinner {
@@ -218,15 +235,15 @@
   }
   
   .empty-icon {
-    @apply w-16 h-16 mx-auto text-gray-400 mb-4;
+    @apply w-16 h-16 mx-auto text-gray-400 dark:text-gray-600 mb-4;
   }
   
   .empty-title {
-    @apply text-xl font-semibold text-gray-900 mb-2;
+    @apply text-xl font-orbitron font-semibold text-gray-900 dark:text-gray-100 mb-2;
   }
   
   .empty-description {
-    @apply text-gray-500;
+    @apply text-gray-500 dark:text-gray-400 font-rajdhani;
   }
   
   .metric-card {
@@ -234,15 +251,15 @@
   }
   
   .metric-value {
-    @apply text-3xl font-bold text-gray-900 mb-1;
+    @apply text-3xl font-orbitron font-bold text-gray-900 dark:text-gray-100 mb-1;
   }
   
   .metric-label {
-    @apply text-sm font-medium text-gray-600;
+    @apply text-sm font-rajdhani font-semibold text-gray-600 dark:text-gray-400 uppercase tracking-wide;
   }
   
   .metric-change {
-    @apply text-xs font-medium;
+    @apply text-xs font-rajdhani font-bold uppercase tracking-wide;
   }
   
   .metric-change-positive {
@@ -254,11 +271,11 @@
   }
   
   .chart-container {
-    @apply bg-white rounded-xl border border-gray-200 p-6;
+    @apply beyblade-card p-6;
   }
   
   .chart-title {
-    @apply text-lg font-semibold text-gray-900 mb-4;
+    @apply text-lg font-orbitron font-semibold text-gray-900 dark:text-gray-100 mb-4;
   }
   
   .filter-tabs {
@@ -266,15 +283,15 @@
   }
   
   .filter-tab {
-    @apply px-4 py-2 rounded-md font-medium text-sm transition-all duration-200;
+    @apply px-4 py-2 rounded-md font-rajdhani font-semibold text-sm transition-all duration-300 uppercase tracking-wide;
   }
   
   .filter-tab-active {
-    @apply bg-white text-gray-900 shadow-sm;
+    @apply bg-gradient-to-r from-sport-600 to-sport-700 text-white shadow-glow transform scale-105;
   }
   
   .filter-tab-inactive {
-    @apply text-gray-600 hover:text-gray-900;
+    @apply text-gray-600 dark:text-gray-400 hover:text-sport-600 dark:hover:text-sport-400 hover:bg-sport-50 dark:hover:bg-sport-900/20;
   }
   
   .content-wrapper {
@@ -302,6 +319,10 @@
     @apply animate-spin;
     animation-duration: 3s;
   }
+  
+  .animate-float {
+    animation: float 3s ease-in-out infinite;
+  }
 }
 
 :root {
@@ -318,6 +339,14 @@
   font-family: 'Space Grotesk', system-ui, -apple-system, sans-serif;
 }
 
+.font-orbitron {
+  font-family: 'Orbitron', monospace;
+}
+
+.font-rajdhani {
+  font-family: 'Rajdhani', sans-serif;
+}
+
 .font-mono {
   font-family: 'JetBrains Mono', 'Fira Code', monospace;
 }
@@ -328,16 +357,16 @@
 }
 
 ::-webkit-scrollbar-track {
-  background: #f1f5f9;
+  @apply bg-gray-100 dark:bg-gray-800;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #cbd5e1;
+  @apply bg-sport-400 dark:bg-sport-600;
   border-radius: 3px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #94a3b8;
+  @apply bg-sport-500 dark:bg-sport-500;
 }
 
 /* Animations */
@@ -348,6 +377,11 @@
 
 .animate-fade-in {
   animation: fadeIn 0.5s ease-out;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
 }
 
 @keyframes slideIn {
@@ -361,7 +395,7 @@
 
 /* Focus styles */
 .focus-ring {
-  @apply focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2;
+  @apply focus:outline-none focus:ring-2 focus:ring-sport-500 focus:ring-offset-2 dark:ring-offset-gray-800;
 }
 
 /* Responsive utilities */
